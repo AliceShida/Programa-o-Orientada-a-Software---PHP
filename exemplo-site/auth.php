@@ -1,15 +1,8 @@
 <?php
 session_start();
-//acesso ao banco
-$servername = "localhost";
-$username = "root";
-$password = "12345";
-$database = "lojaonline";
-$email = $_POST['email'];
-$senha = $_POST['senha'];
+// importa e executa o conteúdo de um arquivo externo em outro script
+require_once  'conexao.php';
 
-//confere se a senha é a mesma do banco de dados
-$conn = new mysqli($servername, $username, $password, $database);
 $stmt = $conn -> prepare("select senha from usuario where email = ?");
 $stmt -> bind_param("s", $email);
 $stmt -> execute();
